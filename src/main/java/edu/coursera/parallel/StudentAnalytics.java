@@ -112,13 +112,17 @@ public final class StudentAnalytics {
                 .collect(Collectors.groupingBy(b->b, Collectors.counting()));
 
         String mostCommon = (String )nameCounts.entrySet()
-                .stream()
+                .stream().parallel()
                 .max(Map.Entry.comparingByValue())
                 .get()
                 .getKey();
 
+
+
         return mostCommon;
     }
+
+
 
     /**
      * Sequentially computes the number of students who have failed the course
